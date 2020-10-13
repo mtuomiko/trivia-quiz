@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Trivia Quiz
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Trivia Quiz</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-padding">
+    <h3>Correct answers {{ quizService.correctAnswers }} / {{ quizService.questions.length }}</h3>
+    <h3>Correct {{ percentageCorrect | percent:'1.0-0' }}</h3>
+    <h3>Duration {{ duration | number:'1.0-0' }} seconds</h3>
+
+    <ion-button (click)="continue()" tappable>Continue</ion-button>
+  </div>
+</ion-content>

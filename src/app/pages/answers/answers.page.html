@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Trivia Quiz
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Trivia Quiz</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-padding">
+    <h3>Correct answers</h3>
+    <ion-list>
+      <ion-item *ngFor="let question of quizService.questions">
+        <ion-card>
+          <ion-card-header>{{ question.question }}</ion-card-header>
+          <ion-card-content>{{ question.correctAnswer }}</ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>
