@@ -1,6 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Question } from '../models/question';
 
+const levels = [
+  'You got everything right',
+  'You got nearly everything right',
+  'You got some right',
+  'You got none right',
+];
+const speedLevels = [
+  'you were fast',
+  'you could have been faster',
+];
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +23,8 @@ export class QuizService {
   private endTime: Date;
   private hasAnswered: boolean;
   private correctAnswers: number;
+  private currentAnswerIndex: number;
+  private userAnswers: string[];
 
   constructor() {
 
@@ -22,9 +35,10 @@ export class QuizService {
     this.startTime = new Date();
     this.hasAnswered = false;
     this.correctAnswers = 0;
+    this.userAnswers = [];
   }
 
-  public async getDefaultQuestions() {
+  public async loadQuestions() {
     const resultJson = await fetch('../../assets/data/mythology_questions.json');
     const result = await resultJson.json();
     const resultQuestions = result.results;
@@ -32,16 +46,7 @@ export class QuizService {
     const randomQuestions = resultQuestions.slice(0, 5);
     const modifiedQuestions = randomQuestions.map(q => this.modifyQuestion(q));
     this.questions = modifiedQuestions;
-    console.log(this.questions);
   }
-
-  // private createCorrectIndex(q) {
-  //   const { correct_answer, incorrect_answers, ...modifiedQuestion } = q;
-  //   const wrongAnswerCount = incorrect_answers.length;
-  //   modifiedQuestion.answers = incorrect_answers.concat([correct_answer]);
-  //   modifiedQuestion.correctIndex = wrongAnswerCount;
-  //   return modifiedQuestion;
-  // }
 
   private modifyQuestion(q) {
     const { correct_answer, incorrect_answers, ...modifiedQuestion } = q;
@@ -91,11 +96,28 @@ export class QuizService {
   }
 
   public getDuration() {
-    return this.endTime.getTime() - this.startTime.getTime();
+    return (this.endTime.getTime() - this.startTime.getTime()) / 1000;
+  }
+
+  public getHasAnswered() {
+    return this.hasAnswered;
+  }
+
+  public getCurrentAnswerIndex() {
+    return this.currentAnswerIndex;
+  }
+
+  public getUserAnswers() {
+    return this.userAnswers;
   }
 
   public checkAnswer(i) {
+    if (this.hasAnswered) {
+      return
+    }
     this.hasAnswered = true;
+    this.currentAnswerIndex = i;
+    this.userAnswers.push(this.getActiveQuestion().answers[i]);
     if (this.getActiveQuestion().answers[i] === this.getActiveQuestion().correctAnswer) {
       this.correctAnswers++;
     }
@@ -111,5 +133,28 @@ export class QuizService {
   public nextQuestion() {
     this.questionCounter++;
     this.hasAnswered = false;
+  }
+
+  public getPercentageCorrect() {
+    return this.getCorrectAnswers() / this.getNumberOfQuestions();
+  }
+
+  public getEvaluation() {
+    let result = '';
+    let levelIndex = null;
+    const fast = (this.getDuration() < (this.getNumberOfQuestions() * 10)) ? true : false;
+    if (this.getPercentageCorrect() >= 1) {
+      levelIndex = 0;
+    } else if (this.getPercentageCorrect() >= 0.8) {
+      levelIndex = 1;
+    } else if (this.getPercentageCorrect() >= 0.4) {
+      levelIndex = 2;
+    } else {
+      levelIndex = 3;
+    }
+    result += levels[levelIndex] + ' and ';
+    result += fast ? speedLevels[0] : speedLevels[1];
+    result += '.'
+    return result;
   }
 }

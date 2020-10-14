@@ -11,6 +11,7 @@ export class ResultsPage implements OnInit {
 
   private percentageCorrect: number;
   private duration: number;
+  private evaluation: string;
 
   constructor(
     private quizService: QuizService,
@@ -18,11 +19,13 @@ export class ResultsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.percentageCorrect = this.quizService.getCorrectAnswers() / this.quizService.getNumberOfQuestions();
-    this.duration = this.quizService.getDuration() / 1000;
+    this.percentageCorrect = this.quizService.getPercentageCorrect();
+    this.duration = this.quizService.getDuration();
+    this.evaluation = this.quizService.getEvaluation();
   }
 
   private continue() {
     this.router.navigateByUrl('answers');
   }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { QuizService } from '../../services/quiz.service';
 import { Router } from '@angular/router';
 
@@ -7,19 +7,19 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
   constructor(
     private quizService: QuizService,
     private router: Router,
   ) { }
 
-  public startQuiz() {
+  public async startQuiz() {
+    await this.quizService.loadQuestions();
     this.router.navigateByUrl('question');
   }
 
-  ngOnInit(): void {
-    this.quizService.getDefaultQuestions();
+  public goToAbout() {
+    this.router.navigateByUrl('about');
   }
-
 }

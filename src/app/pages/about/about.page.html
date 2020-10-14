@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Mythology Quiz
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <p>Questions retrieved from <a (click)="openLink('https://opentdb.com/')">Open Trivia Database</a></p>
+    <p>Images retrieved from <a (click)="openLink('https://pixabay.com/')">Pixabay</a></p>
+    <p>Licensed under Creative Commons Attribution-ShareAlike 4.0 International License</p>
+    <ion-img (click)="openLink('https://creativecommons.org/licenses/by-sa/4.0/')" src="/assets/img/by-sa.png">
+    </ion-img>
+  </div>
+</ion-content>

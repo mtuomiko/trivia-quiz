@@ -24,3 +24,53 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.ion-color-deepspace {
+  --ion-color-base: var(--ion-color-deepspace);
+  --ion-color-base-rgb: var(--ion-color-deepspace-rgb);
+  --ion-color-contrast: var(--ion-color-deepspace-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-deepspace-contrast-rgb);
+  --ion-color-shade: var(--ion-color-deepspace-shade);
+  --ion-color-tint: var(--ion-color-deepspace-tint);
+}
+
+.ion-color-camel {
+  --ion-color-base: var(--ion-color-camel);
+  --ion-color-base-rgb: var(--ion-color-camel-rgb);
+  --ion-color-contrast: var(--ion-color-camel-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-camel-contrast-rgb);
+  --ion-color-shade: var(--ion-color-camel-shade);
+  --ion-color-tint: var(--ion-color-camel-tint);
+}
+
+.ion-color-silverpink {
+  --ion-color-base: var(--ion-color-silverpink);
+  --ion-color-base-rgb: var(--ion-color-silverpink-rgb);
+  --ion-color-contrast: var(--ion-color-silverpink-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-silverpink-contrast-rgb);
+  --ion-color-shade: var(--ion-color-silverpink-shade);
+  --ion-color-tint: var(--ion-color-silverpink-tint);
+}
+
+.ion-color-periwinkle {
+  --ion-color-base: var(--ion-color-periwinkle);
+  --ion-color-base-rgb: var(--ion-color-periwinkle-rgb);
+  --ion-color-contrast: var(--ion-color-periwinkle-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-periwinkle-contrast-rgb);
+  --ion-color-shade: var(--ion-color-periwinkle-shade);
+  --ion-color-tint: var(--ion-color-periwinkle-tint);
+}
+
+.ion-color-maximumblue {
+  --ion-color-base: var(--ion-color-maximumblue);
+  --ion-color-base-rgb: var(--ion-color-maximumblue-rgb);
+  --ion-color-contrast: var(--ion-color-maximumblue-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-maximumblue-contrast-rgb);
+  --ion-color-shade: var(--ion-color-maximumblue-shade);
+  --ion-color-tint: var(--ion-color-maximumblue-tint);
+}
+
+:root {
+  --ion-background-color: var(--ion-color-periwinkle);
+  --ion-background-color-rgb: var(--ion-color-periwinkle-rgb);
+}

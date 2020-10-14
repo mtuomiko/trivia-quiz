@@ -1,15 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Trivia Quiz
+      Mythology Quiz
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="goToAbout()">
+        <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Trivia Quiz</ion-title>
+      <ion-title size="large">Mythology Quiz</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -18,7 +23,10 @@
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div> -->
 
-  <div class="ion-padding">
-    <ion-button (click)="startQuiz()" tappable>Start</ion-button>
+  <div class="ion-padding ion-text-center">
+    <ion-img src="/assets/img/cartoon.png"></ion-img>
+    <div class="ion-padding-top">
+      <ion-button color="deepspace" (click)="startQuiz()" tappable>Start</ion-button>
+    </div>
   </div>
 </ion-content>
